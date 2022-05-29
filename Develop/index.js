@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
+const { title } = require('process');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -16,8 +17,13 @@ const questions = [
     },
     {
         type: 'input',
+        name: 'installation',
+        message: 'What are the steps to install your project?'
+    },
+    {
+        type: 'input',
         name: 'usage',
-        message: 'Describe the usage of your project: '
+        message: 'How should your project be used?'
     },
     {
         type: 'input',
@@ -25,15 +31,20 @@ const questions = [
         message: 'Who are the contributors of this project?'
     },
     {
-        type: 'input',
-        name: 'title',
-        message: 'Instructions to use the project: '
-    },
-    {
         type: 'checkbox',
         name: 'license',
         message: 'Choose a license for your project',
         choices: ['', '', '', '', '', '', '']
+    },
+    {
+        type: 'input',
+        name: 'license-desc',
+        message: 'What license did you choose and why?'
+    },
+    {
+        type: 'input',
+        name: 'question-sec',
+        message: 'Give directions to reach out to you concerning questions: '
     },
     {
         type: 'input',
@@ -53,7 +64,7 @@ const promptUser = () => {
 
 // TODO: Create a function to write README file
 function writeToFile(data) {
-    fs.writeFile('../readme.md', data, err => {
+    fs.writeFile('../README.md', data, err => {
         console.log('Error');
         return;
     })
@@ -61,36 +72,37 @@ function writeToFile(data) {
 
 function generatePage(readmeData) {
     return `
-# <Your-Project-Title>
+#${title}
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+${Description}
 
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
+- [Questions](#questions)
 - [License](#license)
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+${installation}
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+${usage}
 
-## Credits
+## Questions
 
-List your collaborators, if any, with links to their GitHub profiles.
+${question-sec}
+
+Github: ${github}
+Email: ${email}
 
 ## License
 
-The last section of a high-quality README file is the license. 
+${license-desc}
     `
 }
 
@@ -98,9 +110,6 @@ promptUser()
 .then(readmeData => {
     return generatePage(readmeData)
 })
-.then(readmeHTML => {
-    return writeToFile(readmeHTML)
+.then(readmeText => {
+    return writeToFile(readmeText)
 })
-// .then(pageHTML => {
-//     return writeToFile(pageHTML)
-// })

@@ -1,33 +1,21 @@
+# README Generator
 
-# a;sldkfjasld;kfj
+<img src="./images/readme_sc.jpg" alt="picture of code for readme generator">
 
 ## Description
 
-as;ldkfj;lsadkjf
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Questions](#questions)
-- [License](#license)
-
-## Installation
-
-a;sldkfj;lasdkjf
+This project was used as an introduction to Node.js for my Berkeley Coding Bootcamp. I utliized inquirer to prompt the user in the console
+for questions, took the user answers, and used fs to write a readme file.
 
 ## Usage
 
-lasdkfj;lsadkfj
+You can use this application to generate a professional readme file suitable for your own project.
 
-## Questions
+## Contribution
 
-;laskdjf;laskdjf
+Afi Akaug
 
-Github: ;laskdjflasdkj
-Email: al;sdkfjl;asdkjf
+Github: https://github.com/magoofy/
 
-## License
 
-alsdkfjl;asdkjf
     

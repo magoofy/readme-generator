@@ -1,8 +1,8 @@
-// TODO: Include packages needed for this application
+// Packages
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-// TODO: Create an array of questions for user input
+// Function prompts user with questions
 const promptUser = () => {
     return inquirer.prompt([
         {
@@ -60,7 +60,7 @@ const promptUser = () => {
             type: 'checkbox',
             name: 'license',
             message: 'Choose a license for your project. (Required)',
-            choices: ['MIT', 'Apache', ''],
+            choices: ['MIT', 'Apache', 'Mozilla-Public'],
             validate: licenseInput => {
                 if (licenseInput) {
                     return true;
@@ -98,7 +98,7 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'github',
-            message: 'What is your github username? (Required)' ,
+            message: 'What is your github username? (Required)',
             validate: githubInput => {
                 if (githubInput) {
                     return true;
@@ -124,21 +124,21 @@ const promptUser = () => {
     ]);
 }
 
-// TODO: Create a function to write README file
+// Function writes README file
 function writeToFile(data) {
     fs.writeFile('../README.md', data, err => {
-        console.log('Error');
-        console.log(data);
         return;
     });
 }
 
+// Markdown Template for the README file
 function generatePage(readmeData) {
     console.log(readmeData);
     return `
 # ${readmeData.title}
 
-## Licensing [![license](https://img.shields.io/badge/license-${readmeData.license}-blue)](https://shields.io)
+## Licensing 
+[![license](https://img.shields.io/badge/license-${readmeData.license}-blue)](https://shields.io)
 
 ## Description
 
@@ -163,8 +163,8 @@ ${readmeData.usage}
 
 ${readmeData.questions}
 
-Github: ${readmeData.github}
-Email: ${readmeData.email}
+- Github: ${readmeData.github}
+- Email: ${readmeData.email}
 
 ## License
 
@@ -172,6 +172,7 @@ ${readmeData.licenseDesc}
     `
 }
 
+// Series of functions that execute on start
 promptUser()
     .then(readmeData => {
         return generatePage(readmeData)

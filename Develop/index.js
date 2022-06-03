@@ -126,7 +126,7 @@ const promptUser = () => {
 
 // Function writes README file
 function writeToFile(data) {
-    fs.writeFile('../README.md', data, err => {
+    fs.writeFile('../YOUR_README/README.md', data, err => {
         return;
     });
 }
@@ -163,7 +163,7 @@ ${readmeData.usage}
 
 ${readmeData.questions}
 
-- Github: ${readmeData.github}
+- Github: https://github.com/${readmeData.github}/
 - Email: ${readmeData.email}
 
 ## License
